@@ -12,14 +12,19 @@ if (!global.hasOwnProperty('db')) {
         ssl: true
     }
     });
-    console.log('wassuh');
+    sequelize.authenticate()
+  .then(function(err) {
+    console.log('Connection has been established successfully.');
+  })
+  .catch(function (err) {
+    console.log('Unable to connect to the database:', err);
+  });
   }
   else {
     // the application is executed on the local machine ... use mysql
     sequelize = new Sequelize('example-app-db', 'root', null, {
       dialect: 'postgres'
     });
-    console.log(':(');
   }
 
   global.db = {
