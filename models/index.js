@@ -15,13 +15,7 @@ if (!global.hasOwnProperty('db')) {
     sequelize.authenticate()
   .then(function(err) {
     console.log('Connection has been established successfully.');
-    sequelize.query("CREATE TABLE Persons (
-      PersonID int,
-      LastName varchar(255),
-      FirstName varchar(255),
-      Address varchar(255),
-      City varchar(255)
-  );")
+    sequelize.query("drop table persons");
   })
   .catch(function (err) {
     console.log('Unable to connect to the database:', err);
