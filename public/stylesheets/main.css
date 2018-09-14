@@ -1,0 +1,40 @@
+/*@import url('https://fonts.googleapis.com/css?family=Encode+Sans+Condensed:500'); font-family: 'Encode Sans Condensed';*/
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display');/*font-family: 'Playfair Display';*/
+@import url('https://fonts.googleapis.com/css?family=Rubik'); /*font-family: 'Rubik';*/
+@import url('https://fonts.googleapis.com/css?family=Rokkitt'); /*font-family: 'Rokkitt';*/
+
+
+
+
+
+
+body {
+    max-width: 1200px;
+    margin: 0 auto;
+    color: #14141f;
+}
+
+header{
+    font-size: 48px;
+    font-family: 'Playfair Display';
+    border-bottom: 2px solid #d1d1e0;
+    margin-bottom: 20px;
+}
+
+
+.overview {
+    font-family: 'Rubik';
+    font-size: 48px;
+    border-left: 2px solid #d1d1e0;
+    border-right: 2px solid #d1d1e0;
+    padding-left: 10px;
+    padding-right: 10px;
+    float: left;
+}
+
+.indtick {
+    font-family: 'Rokkitt';
+    font-size: 30px;
+    margin-bottom: -12px;
+    margin-top: 5px;
+}
