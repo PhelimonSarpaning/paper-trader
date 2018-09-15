@@ -22,14 +22,16 @@ if (!global.hasOwnProperty('db')) {
   }
   else {
     // the application is executed on the local machine ... use mysql
-    sequelize = new Sequelize('example-app-db', 'root', null, {
+    sequelize = new Sequelize('exampledb', 'postgres', 'testpassword', {
       dialect: 'postgres'
     });
+    console.log('local db connection');
   }
 
   global.db = {
     Sequelize: Sequelize,
     sequelize: sequelize,
+    Indice: sequelize.import(__dirname + '/indice'),
     //User:      sequelize.import(__dirname + '/user') 
     // add your other models here
   }
