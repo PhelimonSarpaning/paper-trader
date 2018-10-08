@@ -32,6 +32,7 @@ if (!global.hasOwnProperty('db')) {
     Sequelize: Sequelize,
     sequelize: sequelize,
     Indice: sequelize.import(__dirname + '/indice'),
+    Stock: sequelize.import(__dirname + '/stock')
     //User:      sequelize.import(__dirname + '/user') 
     // add your other models here
   }

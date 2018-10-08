@@ -1,0 +1,12 @@
+{
+  "name": "dbservice",
+  "version": "1.0.0",
+  "description": "DB controller",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Andrew Murphy",
+  "license": "ISC",
+  "dependencies": {}
+}
