@@ -4,12 +4,16 @@ const iex = require('./iex.js');
 function loop() {
     db.sequelize.sync().then((onFulfilled) => {
         alphavantage.loop();
-        iex.data('msft').then((asdf) => {
-          console.log(asdf);
-        });
     });
-}
+};
+
+function stockinfo(ticker) {
+    iex.data(ticker).then((asdf) => {
+        console.log(asdf);
+    });
+};
 
 module.exports = {
-    loop: loop
+    loop: loop,
+    stockinfo: stockinfo
 }
