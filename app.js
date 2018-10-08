@@ -6,8 +6,7 @@ const logger = require('morgan');
 const request = require('request');
 const bodyparser = require('body-parser');
 const db = require('./models');
- 
-const dbservice = require('dbservice');
+const dbservice = require('./dbservice.js');
 
 //START OF THE DATABASE LOOP
 dbservice.loop();
