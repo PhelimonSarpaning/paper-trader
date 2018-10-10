@@ -14,7 +14,7 @@ body {
     color: #14141f;
 }
 
-header{
+.title{
     font-size: 48px;
     font-family: 'Playfair Display';
     border-bottom: 2px solid #d1d1e0;

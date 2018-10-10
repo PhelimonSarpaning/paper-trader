@@ -3,7 +3,7 @@ const iex = require('./iex.js');
 
 function loop() {
     db.sequelize.sync().then((onFulfilled) => {
-        alphavantage.loop();
+        //alphavantage.loop();
     });
 };
 

@@ -5,44 +5,21 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const request = require('request');
 const bodyparser = require('body-parser');
+const session = require('express-session');
 const db = require('./models');
 const dbservice = require('./dbservice.js');
-var passport = require('passport')
-  , FacebookStrategy = require('passport-facebook').Strategy;
 
-passport.use(new FacebookStrategy({
-    clientID: FACEBOOK_APP_ID,
-    clientSecret: FACEBOOK_APP_SECRET,
-    callbackURL: "http://www.example.com/auth/facebook/callback"
-  },
-  function(accessToken, refreshToken, profile, done) {
-    User.findOrCreate(..., function(err, user) {
-      if (err) { return done(err); }
-      done(null, user);
-    });
-  }
-));
 //START OF THE DATABASE LOOP
 dbservice.loop();
-dbservice.stockinfo('F');
-
-/*function time() {
-
-  console.log(new Date());
-}
-
-setInterval(time, 1000);*/
-
-
-
 
 // Declaring route handlers
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const stockRouter = require('./routes/stock');
-
-
-
+const loginRouter = require('./routes/login');
+const signupRouter = require('./routes/signup');
+const dashboardRouter = require('./routes/dashboard');
+const logoutRouter = require('./routes/logout');
 
 const app = express();
 
@@ -59,14 +36,41 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 
+app.use(session({
+  key: 'user_sid',
+  secret: 'somerandonstuffs',
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    expires: 600000
+  }
+}));
+
+
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/stock', stockRouter);
+app.use('/signup', signupRouter);
+app.use('/login', loginRouter);
+app.use('/dashboard', dashboardRouter);
+app.use('/logout', logoutRouter);
 
+
+// This middleware will check if user's cookie is still saved in browser and user is not set, then automatically log the user out.
+// This usually happens when you stop your express server after login, your cookie still remains saved in the browser.
+app.use((req, res, next) => {
+  if (req.cookies.user_sid && !req.session.user) {
+    res.clearCookie('user_sid');
+  }
+  next();
+});
+
+/*
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
-});
+});*/
 
 // error handler
 app.use(function (err, req, res, next) {
@@ -77,6 +81,7 @@ app.use(function (err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+  console.log(err);
 });
 
 module.exports = app;
